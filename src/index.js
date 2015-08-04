@@ -5,7 +5,7 @@ import { Tree } from 'PhyloCanvas';
 
 class History {
 
-  constructor(tree) {
+  constructor(tree, isCollapsed) {
     this.tree = tree;
 
     this.injectCss();
@@ -19,8 +19,10 @@ class History {
       this.addSnapshot(this.tree.root.id);
     }.bind(this));
 
-    if (tree.historyCollapsed) {
+    if (isCollapsed) {
       this.collapse();
+    } else {
+      this.expand();
     }
   }
 
@@ -175,12 +177,11 @@ class History {
 export default function historyPlugin(decorate) {
   decorate(this, 'createTree', function (delegate, args) {
     const tree = delegate(...args);
-    const [, config ] = args;
+    const [, config = {}] = args;
     if (config.history || typeof config.history === 'undefined') {
-      let isCollapsedConfigured = (config.history && typeof config.history.collapsed !== 'undefined');
-      tree.historyCollapsed = isCollapsedConfigured ? config.history.collapsed : true;
+      const isCollapsedConfigured = (config.history && typeof config.history.collapsed !== 'undefined');
       tree.historySnapshots = [];
-      tree.history = new History(tree);
+      tree.history = new History(tree, isCollapsedConfigured ? config.history.collapsed : true);
     }
     return tree;
   });

@@ -2,6 +2,9 @@
 Visual History for PhyloCanvas
 
 ## Usage
+```
+npm install PhyloCanvas phylocanvas-plugin-history
+```
 ```javascript
 import * as PhyloCanvas from 'PhyloCanvas';
 import historyPlugin from 'phylocanvas-plugin-history';

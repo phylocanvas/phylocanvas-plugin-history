@@ -100,7 +100,7 @@ class History {
   addSnapshot(id) {
     const historyIdPrefix = 'phylocanvas-history-';
     const treetype = this.tree.treeType;
-    const historyAlreadyPresent = false;
+    let historyAlreadyPresent = false;
 
     this.tree.historySnapshots.forEach(function (ele) {
       ele.style.background = 'transparent';

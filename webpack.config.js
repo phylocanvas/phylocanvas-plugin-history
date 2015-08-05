@@ -1,9 +1,11 @@
+/* eslint es6: false */
+var webpack = require('webpack');
+var isBuild = process.env.NODE_ENV && process.env.NODE_ENV === 'production';
+
 module.exports = {
-  entry: [
-    './dev/index.js',
-  ],
+  entry: isBuild ? './src/index.js': './dev/index.js',
   output: {
-    filename: 'history-dev.js',
+    filename: isBuild ? 'index.js' : 'history-dev.js',
     libraryTarget: 'umd',
   },
   module: {
@@ -11,4 +13,11 @@ module.exports = {
       { test: /\.js$/, exclude: /webpack/, loader: 'babel?stage=0' },
     ],
   },
+  plugins: isBuild ? [
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
+  ] : null
 };

@@ -13,6 +13,7 @@ module.exports = {
       { test: /\.js$/, exclude: /webpack/, loader: 'babel?stage=0' },
     ],
   },
+  externals: isBuild ? 'PhyloCanvas' : null,
   plugins: isBuild ? [
     new webpack.optimize.UglifyJsPlugin({
       compressor: {

@@ -1,4 +1,4 @@
-import * as PhyloCanvas from '../node_modules/PhyloCanvas/src/index';
+import PhyloCanvas from '../node_modules/PhyloCanvas/src/index';
 import historyPlugin from '../src/index';
 
 PhyloCanvas.plugin(historyPlugin);

@@ -6,7 +6,7 @@ Visual History for PhyloCanvas
 npm install PhyloCanvas phylocanvas-plugin-history
 ```
 ```javascript
-import * as PhyloCanvas from 'PhyloCanvas';
+import PhyloCanvas from 'PhyloCanvas';
 import historyPlugin from 'phylocanvas-plugin-history';
 
 PhyloCanvas.plugin(historyPlugin);

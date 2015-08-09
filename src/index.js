@@ -1,7 +1,8 @@
-import { addClass, hasClass, removeClass } from 'phylocanvas-utils/src/dom';
-import { fireEvent, addEvent, killEvent } from 'phylocanvas-utils/src/events';
-
 import { Tree } from 'PhyloCanvas';
+import { dom, events } from 'phylocanvas-utils';
+
+const { addClass, hasClass, removeClass } = dom;
+const { fireEvent, addEvent, killEvent } = events;
 
 class History {
 

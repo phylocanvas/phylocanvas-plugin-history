@@ -10,7 +10,7 @@ class History {
     this.tree = tree;
 
     this.injectCss();
-    this.div = this.createDiv(tree.canvasEl);
+    this.div = this.createDiv(tree.containerElement);
 
     this.tree.addListener('subtree', function (evt) {
       this.addSnapshot(evt.node);
@@ -59,7 +59,7 @@ class History {
     } else {
       this.collapse();
     }
-    fireEvent(this.tree.canvasEl, 'historytoggle', { isOpen: !this.isCollapsed() });
+    fireEvent(this.tree.containerElement, 'historytoggle', { isOpen: !this.isCollapsed() });
   }
 
   createDiv(parentDiv) {
@@ -92,11 +92,11 @@ class History {
   resizeTree() {
     const tree = this.tree;
     this.width = this.div.offsetWidth;
-    tree.setSize(tree.canvasEl.offsetWidth - this.width, tree.canvasEl.offsetHeight);
+    tree.setSize(tree.containerElement.offsetWidth - this.width, tree.containerElement.offsetHeight);
     if (this.isCollapsed()) {
-      tree.canvasEl.getElementsByTagName('canvas')[0].style.marginLeft = this.width + 'px';
+      tree.containerElement.getElementsByTagName('canvas')[0].style.marginLeft = this.width + 'px';
     } else {
-      tree.canvasEl.getElementsByTagName('canvas')[0].style.marginLeft = '20%';
+      tree.containerElement.getElementsByTagName('canvas')[0].style.marginLeft = '20%';
     }
   }
 
@@ -156,7 +156,7 @@ class History {
       '.pc-history .toggle:hover { background-color: #FFF; color: #CCC }' +
       '.pc-history.collapsed { width: 25px }' +
       '.pc-history.collapsed .pc-history-snapshots { display: none }' +
-      '.pc-history.collapsed .pc-history-title { writing-mode: tb-rl; -webkit-transform: rotate(270deg); -moz-transform: rotate(270deg); -o-transform: rotate(270deg); -ms-transform: rotate(270deg); transform: rotate(270deg); margin-top: 70px; background: 0 0; color: #666; letter-spacing: 1.2px; border-bottom: none }' +
+      '.pc-history.collapsed .pc-history-title { writing-mode: sideways-rl; -webkit-writing-mode: vertical-rl; margin-top: 30px; background: 0 0; color: #666; letter-spacing: 1.2px; border-bottom: none }' +
       '.pc-history-snapshots { position: absolute; top: 20px; bottom: 0; margin: 0; padding: 0; overflow-x: hidden; overflow-y: scroll; }' +
       '.pc-history-snapshots li { list-style: outside none none }' +
       '.pc-history img { border: 0px solid #CCC; border-top-width: 1px; cursor: pointer; width: 100%; box-sizing: border-box; transition: background-color .25s ease; display: block }' +

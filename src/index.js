@@ -12,13 +12,13 @@ class History {
     this.injectCss();
     this.div = this.createDiv(tree.containerElement);
 
-    this.tree.addListener('subtree', function (evt) {
-      this.addSnapshot(evt.node);
-    }.bind(this));
-    this.tree.addListener('loaded', this.reset.bind(this));
-    this.tree.addListener('typechanged', function () {
-      this.addSnapshot(this.tree.root.id);
-    }.bind(this));
+    this.tree.addListener('subtree', ({ node }) => this.addSnapshot(node));
+    this.tree.addListener('original-tree', () => this.addSnapshot(this.tree.root.id));
+    this.tree.addListener('loaded', () => this.reset());
+
+    this.tree.addListener(
+      'typechanged', () => this.addSnapshot(this.tree.root.id)
+    );
 
     if (isCollapsed) {
       this.collapse();
@@ -31,6 +31,7 @@ class History {
     this.clear();
     // Fixing initial snapshot - draw only after the tree is drawn
     if (this.tree.drawn) {
+      console.log(this.tree.root);
       this.addSnapshot(this.tree.root.id);
     }
   }
@@ -139,12 +140,13 @@ class History {
     for (let i = listElements.length; i--; ) {
       this.snapshotList.removeChild(listElements[0]);
     }
+    this.tree.historySnapshots.length = 0;
   }
 
-  goBackTo(event) {
-    const element = event.target;
-    this.tree.setTreeType(element.getAttribute('data-tree-type'), true);
-    this.tree.redrawFromBranch(this.tree.originalTree.branches[element.id.replace('phylocanvas-history-', '')]);
+  goBackTo({ target }) {
+    const id = target.id.replace('phylocanvas-history-', '');
+    this.tree.setTreeType(target.getAttribute('data-tree-type'), true);
+    this.tree.redrawFromBranch(this.tree.originalTree.branches[id]);
   }
 
   injectCss() {

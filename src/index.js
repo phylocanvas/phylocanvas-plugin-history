@@ -1,4 +1,4 @@
-import { Tree } from 'PhyloCanvas';
+import { Tree } from 'phylocanvas';
 import { dom, events } from 'phylocanvas-utils';
 
 const { addClass, hasClass, removeClass } = dom;
@@ -13,8 +13,7 @@ class History {
     this.div = this.createDiv(tree.containerElement);
 
     this.tree.addListener('subtree', ({ node }) => this.addSnapshot(node));
-    this.tree.addListener('original-tree', () => this.addSnapshot(this.tree.root.id));
-    this.tree.addListener('loaded', () => this.reset());
+    this.tree.addListener('loaded', () => this.addSnapshot(this.tree.root.id));
 
     this.tree.addListener(
       'typechanged', () => this.addSnapshot(this.tree.root.id)
@@ -24,15 +23,6 @@ class History {
       this.collapse();
     } else {
       this.expand();
-    }
-  }
-
-  reset() {
-    this.clear();
-    // Fixing initial snapshot - draw only after the tree is drawn
-    if (this.tree.drawn) {
-      console.log(this.tree.root);
-      this.addSnapshot(this.tree.root.id);
     }
   }
 

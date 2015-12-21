@@ -1,7 +1,13 @@
 const webpack = require('webpack');
 
 const loaders = [
-  { test: /\.js$/, exclude: /webpack/, loader: 'babel?stage=0' },
+  { test: /\.js$/,
+    exclude: /webpack/,
+    loader: 'babel',
+    query: {
+      presets: [ 'es2015', 'stage-0' ],
+    },
+  },
 ];
 
 const devConfig = {

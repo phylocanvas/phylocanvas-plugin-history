@@ -91,6 +91,8 @@ class History {
   }
 
   addSnapshot(id) {
+    if (!id) return;
+
     const historyIdPrefix = 'phylocanvas-history-';
     const treetype = this.tree.treeType;
     let historyAlreadyPresent = false;

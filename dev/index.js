@@ -7,6 +7,7 @@ const tree = PhyloCanvas.createTree('phylocanvas');
 
 tree.showLabels = true;
 tree.hoverLabel = true;
+tree.setTreeType('rectangular');
 
 const subtreeButton = document.createElement('button');
 subtreeButton.innerHTML = 'subtree';

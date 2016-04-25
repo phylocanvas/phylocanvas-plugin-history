@@ -1,18 +1,20 @@
-import PhyloCanvas from 'phylocanvas';
+import Phylocanvas from 'phylocanvas';
 import historyPlugin from '../src/index';
 
-PhyloCanvas.plugin(historyPlugin);
+Phylocanvas.plugin(historyPlugin);
 
-const tree = PhyloCanvas.createTree('phylocanvas');
+const tree = Phylocanvas.createTree('phylocanvas', {
+  history: {
+    collapsed: false,
+  },
+});
 
-tree.showLabels = true;
-tree.hoverLabel = true;
 tree.setTreeType('rectangular');
 
 const subtreeButton = document.createElement('button');
 subtreeButton.innerHTML = 'subtree';
 subtreeButton.addEventListener('click', () => {
-  const branch = tree.branches['E'];
+  const branch = tree.branches.E;
   branch.redrawTreeFromBranch();
 });
 document.body.appendChild(subtreeButton);

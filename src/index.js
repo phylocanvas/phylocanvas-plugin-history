@@ -181,7 +181,7 @@ export default function historyPlugin(decorate) {
   });
 
   decorate(Tree, 'resizeToContainer', function (delegate) {
-    if (!this.history) {
+    if (!this.history || !this.history.resizeTree) {
       return delegate.apply(this);
     }
     this.history.resizeTree();

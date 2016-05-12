@@ -1,15 +1,19 @@
-# PhyloCanvas History Plugin
-Visual History for PhyloCanvas
+# Phylocanvas History Plugin
+Visual History for Phylocanvas
 
 ## Usage
 ```
-npm install PhyloCanvas phylocanvas-plugin-history
+npm install phylocanvas phylocanvas-plugin-history
 ```
 ```javascript
-import PhyloCanvas from 'PhyloCanvas';
+import Phylocanvas from 'phylocanvas';
 import historyPlugin from 'phylocanvas-plugin-history';
 
-PhyloCanvas.plugin(historyPlugin);
+Phylocanvas.plugin(historyPlugin);
 
-// ...then load your tree(s)
+Phylocanvas.createTree('id', {
+  history: {
+    collapsed: false, // open history on tree load
+  }
+})
 ```

@@ -1,0 +1,78 @@
+.pc-history {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 20%;
+    overflow: hidden;
+    background: #EEE
+}
+.pc-history .pc-history-title {
+    box-sizing: border-box;
+    height: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    padding: 2px;
+    border-bottom: 1px solid #bbb
+}
+.pc-history .toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    background-color: #666;
+    color: #FFF;
+    box-sizing: border-box;
+    height: 20px;
+}
+.pc-history.collapsed .toggle {
+    border-radius: 0 50% 50% 0
+}
+.pc-history .toggle:hover {
+    background-color: #FFF;
+    color: #CCC
+}
+.pc-history.collapsed {
+    width: 25px
+}
+.pc-history.collapsed .pc-history-snapshots {
+    display: none
+}
+.pc-history.collapsed .pc-history-title {
+    writing-mode: sideways-rl;
+    -webkit-writing-mode: vertical-rl;
+    margin-top: 30px;
+    background: 0 0;
+    color: #666;
+    letter-spacing: 1.2px;
+    border-bottom: none
+}
+.pc-history-snapshots {
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.pc-history-snapshots li {
+    list-style: outside none none
+}
+.pc-history img {
+    border: 0px solid #CCC;
+    border-top-width: 1px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color .25s ease;
+    display: block
+}
+.pc-history img:hover {
+    background-color: #fff
+}

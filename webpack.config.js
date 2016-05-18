@@ -8,6 +8,7 @@ const loaders = [
       presets: [ 'es2015', 'stage-0' ],
     },
   },
+  { test: /\.css$/, loader: 'style!css' },
 ];
 
 const devConfig = {

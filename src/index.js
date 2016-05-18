@@ -13,7 +13,7 @@ class History {
       require('./style.css');
     }
 
-    this.container = this.createDiv(tree.containerElement);
+    this.container = this.createElements(tree.containerElement);
 
     this.tree.addListener('subtree', ({ node }) => this.addSnapshot(node));
     this.tree.addListener('loaded', () => this.addSnapshot(this.tree.root.id));
@@ -56,31 +56,31 @@ class History {
     fireEvent(this.tree.containerElement, 'historytoggle', { isOpen: !this.isCollapsed() });
   }
 
-  createDiv(parentDiv) {
-    const div = document.createElement('div');
-    div.className = 'pc-history';
-    addEvent(div, 'click', killEvent);
-    addEvent(div, 'contextmenu', killEvent);
+  createElements(parentElement) {
+    const container = document.createElement('div');
+    container.className = 'phylocanvas-history';
+    addEvent(container, 'click', killEvent);
+    addEvent(container, 'contextmenu', killEvent);
 
     const title = document.createElement('div');
     title.innerHTML = 'History';
-    title.className = 'pc-history-title';
-    div.appendChild(title);
+    title.className = 'phylocanvas-history-title';
+    container.appendChild(title);
 
     const tabDiv = document.createElement('div');
     tabDiv.appendChild(document.createTextNode('<'));
     tabDiv.className = 'toggle';
     addEvent(tabDiv, 'click', this.toggle.bind(this));
-    div.appendChild(tabDiv);
+    container.appendChild(tabDiv);
     this.toggleDiv = tabDiv;
 
     const snapshotList = document.createElement('ul');
-    snapshotList.className = 'pc-history-snapshots';
-    div.appendChild(snapshotList);
+    snapshotList.className = 'phylocanvas-history-snapshots';
+    container.appendChild(snapshotList);
     this.snapshotList = snapshotList;
 
-    parentDiv.appendChild(div);
-    return div;
+    parentElement.appendChild(container);
+    return container;
   }
 
   resizeTree() {
@@ -105,7 +105,7 @@ class History {
       ele.style.background = 'transparent';
       if (ele.id === historyIdPrefix + id && ele.getAttribute('data-tree-type') === treetype) {
         historyAlreadyPresent = true;
-        ele.style.background = 'lightblue';
+        ele.style.background = '#9BB7BF';
       }
     });
 
@@ -120,7 +120,7 @@ class History {
     thumbnail.src = url;
     thumbnail.id = historyIdPrefix + id;
     thumbnail.setAttribute('data-tree-type', this.tree.treeType);
-    thumbnail.style.background = 'lightblue';
+    thumbnail.style.background = '#9BB7BF';
 
     this.snapshots.push(thumbnail);
 

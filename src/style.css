@@ -1,4 +1,4 @@
-.pc-history {
+.phylocanvas-history {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -8,7 +8,7 @@
     overflow: hidden;
     background: #EEE
 }
-.pc-history .pc-history-title {
+.phylocanvas-history .phylocanvas-history-title {
     box-sizing: border-box;
     height: 20px;
     text-align: center;
@@ -17,7 +17,7 @@
     padding: 2px;
     border-bottom: 1px solid #bbb
 }
-.pc-history .toggle {
+.phylocanvas-history .toggle {
     position: absolute;
     top: 0;
     right: 0;
@@ -30,20 +30,20 @@
     box-sizing: border-box;
     height: 20px;
 }
-.pc-history.collapsed .toggle {
+.phylocanvas-history.collapsed .toggle {
     border-radius: 0 50% 50% 0
 }
-.pc-history .toggle:hover {
+.phylocanvas-history .toggle:hover {
     background-color: #FFF;
     color: #CCC
 }
-.pc-history.collapsed {
+.phylocanvas-history.collapsed {
     width: 25px
 }
-.pc-history.collapsed .pc-history-snapshots {
+.phylocanvas-history.collapsed .phylocanvas-history-snapshots {
     display: none
 }
-.pc-history.collapsed .pc-history-title {
+.phylocanvas-history.collapsed .phylocanvas-history-title {
     writing-mode: sideways-rl;
     -webkit-writing-mode: vertical-rl;
     margin-top: 30px;
@@ -52,7 +52,7 @@
     letter-spacing: 1.2px;
     border-bottom: none
 }
-.pc-history-snapshots {
+.phylocanvas-history-snapshots {
     position: absolute;
     top: 20px;
     bottom: 0;
@@ -61,10 +61,10 @@
     overflow-x: hidden;
     overflow-y: scroll;
 }
-.pc-history-snapshots li {
+.phylocanvas-history-snapshots li {
     list-style: outside none none
 }
-.pc-history img {
+.phylocanvas-history img {
     border: 0px solid #CCC;
     border-top-width: 1px;
     cursor: pointer;
@@ -73,6 +73,6 @@
     transition: background-color .25s ease;
     display: block
 }
-.pc-history img:hover {
+.phylocanvas-history img:hover {
     background-color: #fff
 }

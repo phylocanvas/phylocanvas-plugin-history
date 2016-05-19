@@ -24,12 +24,7 @@ const devConfig = {
   },
 };
 
-const buildConfig = {
-  entry: './src/index.js',
-  output: {
-    filename: 'index.js',
-    libraryTarget: 'umd',
-  },
+const commonBuildConfig = {
   module: {
     loaders,
   },
@@ -42,6 +37,24 @@ const buildConfig = {
     }),
   ],
 };
+
+const styledConfig = Object.assign({}, commonBuildConfig, {
+  entry: './src/styled.js',
+  output: {
+    libraryTarget: 'umd',
+    filename: 'index.js',
+  },
+});
+
+const unstyledConfig = Object.assign({}, commonBuildConfig, {
+  entry: './src/unstyled.js',
+  output: {
+    libraryTarget: 'umd',
+    filename: 'unstyled.js',
+  },
+});
+
+const buildConfig = [ styledConfig, unstyledConfig ];
 
 const isBuild = process.env.NODE_ENV && process.env.NODE_ENV === 'production';
 

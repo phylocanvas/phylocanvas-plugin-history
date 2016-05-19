@@ -1,5 +1,5 @@
 import Phylocanvas from 'phylocanvas';
-import historyPlugin from '../src/index';
+import historyPlugin from '../src/styled';
 
 Phylocanvas.plugin(historyPlugin);
 

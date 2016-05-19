@@ -13,10 +13,15 @@ Phylocanvas.plugin(historyPlugin);
 
 Phylocanvas.createTree('id', {
   history: {
-    unstyled: false,
-    parentElement: null, // to solve z-index issues
+    parentElement: null, // defaults to tree.containerElement
   }
 })
+```
+
+## Style
+An unstyled bundle is also available:
+```javascript
+import historyPlugin from 'phylocanvas-plugin-history/unstyled';
 ```
 
 ## Events

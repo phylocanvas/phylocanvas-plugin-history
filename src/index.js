@@ -8,14 +8,9 @@ const snapshotSelectedClass = `${snapshotClass}--selected`;
 
 class History {
 
-  constructor(tree, { unstyled, parentElement = tree.containerElement }) {
+  constructor(tree, { parentElement = tree.containerElement }) {
     this.tree = tree;
     this.snapshots = [];
-
-    if (!unstyled) {
-      require('./style.css');
-      this.tree.containerElement.style.overflow = 'hidden';
-    }
 
     this.isOpen = false;
     this.container = this.createElements(parentElement);

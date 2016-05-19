@@ -9,6 +9,7 @@ const loaders = [
     },
   },
   { test: /\.css$/, loader: 'style!css' },
+  { test: /\.svg$/, loader: 'url?limit=999999' },
 ];
 
 const devConfig = {

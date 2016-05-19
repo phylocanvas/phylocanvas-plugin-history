@@ -1,78 +1,88 @@
 .phylocanvas-history {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    box-sizing: border-box;
-    width: 20%;
-    overflow: hidden;
-    background: #EEE
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 240px;
+  background: #fff;
+  transform: translateX(-240px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition-duration: .2s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-property: transform;
+  border: 1px solid #e7e7e7;
+  border-left: none;
 }
+
+.phylocanvas-history--open {
+  transform: translateX(0);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
 .phylocanvas-history .phylocanvas-history-title {
-    box-sizing: border-box;
-    height: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: #666;
-    padding: 2px;
-    border-bottom: 1px solid #bbb
+  box-sizing: border-box;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+  padding: 2px;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 8px;
 }
-.phylocanvas-history .toggle {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 2px 8px;
-    cursor: pointer;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    background-color: #666;
-    color: #FFF;
-    box-sizing: border-box;
-    height: 20px;
+
+.phylocanvas-history-button {
+  border: none;
+  font-size: 24px;
+  height: 48px;
+  margin: auto;
+  min-width: 24px;
+  width: 26px;
+  padding: 0;
+  overflow: hidden;
+  background: #3c7383;
+  color: #fff;
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
+  position: relative;
+  line-height: normal;
+  position: absolute;
+  bottom: 16px;
+  right: -27px;
+  z-index: 1;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0 2px 2px 0;
+  background-image: url('./icon.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
 }
-.phylocanvas-history.collapsed .toggle {
-    border-radius: 0 50% 50% 0
-}
-.phylocanvas-history .toggle:hover {
-    background-color: #FFF;
-    color: #CCC
-}
-.phylocanvas-history.collapsed {
-    width: 25px
-}
-.phylocanvas-history.collapsed .phylocanvas-history-snapshots {
-    display: none
-}
-.phylocanvas-history.collapsed .phylocanvas-history-title {
-    writing-mode: sideways-rl;
-    -webkit-writing-mode: vertical-rl;
-    margin-top: 30px;
-    background: 0 0;
-    color: #666;
-    letter-spacing: 1.2px;
-    border-bottom: none
-}
+
 .phylocanvas-history-snapshots {
-    position: absolute;
-    top: 20px;
-    bottom: 0;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: scroll;
+  position: absolute;
+  top: 33px;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
+
 .phylocanvas-history-snapshots li {
-    list-style: outside none none
+  list-style: outside none none
 }
-.phylocanvas-history img {
-    border: 0px solid #CCC;
-    border-top-width: 1px;
-    cursor: pointer;
-    width: 100%;
-    box-sizing: border-box;
-    transition: background-color .25s ease;
-    display: block
+
+.phylocanvas-history-snapshot {
+  border: none;
+  border-top-width: 1px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color .2s cubic-bezier(.4,0,.2,1);
+  display: block;
 }
-.phylocanvas-history img:hover {
-    background-color: #fff
+
+.phylocanvas-history-snapshot--selected {
+  background-color: #9BB7BF;
 }

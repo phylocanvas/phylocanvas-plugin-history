@@ -3,7 +3,11 @@ import historyPlugin from '../src/index';
 
 Phylocanvas.plugin(historyPlugin);
 
-const tree = Phylocanvas.createTree('phylocanvas');
+const tree = Phylocanvas.createTree('phylocanvas', {
+  history: {
+    // parentElement: document.body,
+  },
+});
 
 tree.setTreeType('rectangular');
 

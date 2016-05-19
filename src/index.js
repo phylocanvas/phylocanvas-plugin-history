@@ -8,7 +8,7 @@ const snapshotSelectedClass = `${snapshotClass}--selected`;
 
 class History {
 
-  constructor(tree, { unstyled }) {
+  constructor(tree, { unstyled, parentElement = tree.containerElement }) {
     this.tree = tree;
     this.snapshots = [];
 
@@ -18,7 +18,7 @@ class History {
     }
 
     this.isOpen = false;
-    this.container = this.createElements(tree.containerElement);
+    this.container = this.createElements(parentElement);
 
     this.tree.addListener('subtree', ({ node }) => this.addSnapshot(node));
     this.tree.addListener('loaded', () => this.addSnapshot(this.tree.root.id));
@@ -69,13 +69,12 @@ class History {
   addSnapshot(id) {
     if (!id) return;
 
-    const historyIdPrefix = 'phylocanvas-history-';
     const treetype = this.tree.treeType;
     let historyAlreadyPresent = false;
 
     this.snapshots.forEach(element => {
       removeClass(element, snapshotSelectedClass);
-      if (element.id === historyIdPrefix + id &&
+      if (element.getAttribute('data-tree-root') === id &&
           element.getAttribute('data-tree-type') === treetype) {
         historyAlreadyPresent = true;
         addClass(element, snapshotSelectedClass);
@@ -85,35 +84,35 @@ class History {
     if (historyAlreadyPresent) {
       return;
     }
+
     const url = this.tree.getPngUrl();
     const listElement = document.createElement('li');
+    listElement.className = `${snapshotClass} ${snapshotSelectedClass}`;
+    listElement.setAttribute('data-tree-root', id);
+    listElement.setAttribute('data-tree-type', this.tree.treeType);
+    listElement.className = `${snapshotClass} ${snapshotSelectedClass}`;
+
     const thumbnail = document.createElement('img');
-
-    thumbnail.width = this.width;
     thumbnail.src = url;
-    thumbnail.id = historyIdPrefix + id;
-    thumbnail.setAttribute('data-tree-type', this.tree.treeType);
-    thumbnail.className = `${snapshotClass} ${snapshotSelectedClass}`;
 
-    this.snapshots.push(thumbnail);
+    this.snapshots.push(listElement);
 
     listElement.appendChild(thumbnail);
     this.snapshotList.appendChild(listElement);
 
-    addEvent(thumbnail, 'click', this.goBackTo.bind(this));
+    addEvent(listElement, 'click', this.goBackTo.bind(this, listElement));
   }
 
   clear() {
-    const listElements = this.snapshotList.getElementsByTagName('li');
-    for (let i = listElements.length; i--;) {
-      this.snapshotList.removeChild(listElements[0]);
+    for (let i = this.snapshots.length; i--;) {
+      this.snapshotList.removeChild(this.snapshots[0]);
     }
     this.snapshots.length = 0;
   }
 
-  goBackTo({ target }) {
-    const id = target.id.replace('phylocanvas-history-', '');
-    this.tree.setTreeType(target.getAttribute('data-tree-type'), true);
+  goBackTo(snapshot) {
+    const id = snapshot.getAttribute('data-tree-root');
+    this.tree.setTreeType(snapshot.getAttribute('data-tree-type'), true);
     this.tree.redrawFromBranch(this.tree.originalTree.branches[id]);
   }
 

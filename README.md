@@ -14,6 +14,7 @@ Phylocanvas.plugin(historyPlugin);
 Phylocanvas.createTree('id', {
   history: {
     unstyled: false,
+    parentElement: null, // to solve z-index issues
   }
 })
 ```

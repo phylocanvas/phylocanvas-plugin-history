@@ -123,9 +123,7 @@ export default function historyPlugin(decorate) {
   decorate(this, 'createTree', (delegate, args) => {
     const tree = delegate(...args);
     const [ , config = {} ] = args;
-    if (config.history || typeof config.history === 'undefined') {
-      tree.history = new History(tree, config.history);
-    }
+    tree.history = new History(tree, config.history || {});
     return tree;
   });
 

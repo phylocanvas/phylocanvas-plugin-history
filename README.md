@@ -13,7 +13,10 @@ Phylocanvas.plugin(historyPlugin);
 
 Phylocanvas.createTree('id', {
   history: {
-    collapsed: false, // open history on tree load
+    unstyled: false,
   }
 })
 ```
+
+## Events
+A `historytoggle` event is fired when the history is opened or closed, with an `isOpen` flag in the event data.

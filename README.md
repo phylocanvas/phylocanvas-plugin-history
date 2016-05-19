@@ -17,6 +17,7 @@ Phylocanvas.createTree('id', {
   }
 })
 ```
+_N.B. It is the responsibility of the developer to ensure that the overflow of the parent element is hidden._
 
 ## Style
 An unstyled bundle is also available:

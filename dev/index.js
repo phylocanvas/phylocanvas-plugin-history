@@ -10,6 +10,7 @@ const tree = Phylocanvas.createTree('phylocanvas', {
 });
 
 tree.setTreeType('rectangular');
+tree.containerElement.style.overflow = 'hidden';
 
 const subtreeButton = document.createElement('button');
 subtreeButton.innerHTML = 'subtree';

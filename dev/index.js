@@ -1,3 +1,5 @@
+import 'phylocanvas/polyfill';
+
 import Phylocanvas from 'phylocanvas';
 import historyPlugin from '../src/styled';
 

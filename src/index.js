@@ -8,12 +8,15 @@ const snapshotSelectedClass = `${snapshotClass}--selected`;
 
 class History {
 
-  constructor(tree, { parentElement = tree.containerElement }) {
+  constructor(tree, { parent = tree.containerElement, zIndex = 1 }) {
     this.tree = tree;
     this.snapshots = [];
 
     this.isOpen = false;
-    this.container = this.createElements(parentElement);
+    this.parent = parent;
+    this.buttonClickHandler = this.toggle.bind(this);
+    this.container = this.createElements(parent);
+    this.container.style.zIndex = zIndex;
 
     this.tree.addListener('subtree', ({ node }) => this.addSnapshot(node));
     this.tree.addListener('loaded', () => this.addSnapshot(this.tree.root.id));
@@ -25,8 +28,13 @@ class History {
 
   toggle() {
     this.isOpen = !this.isOpen;
+
     (this.isOpen ? addClass : removeClass)(
       this.container, 'phylocanvas-history--open'
+    );
+
+    this.parent[`${this.isOpen ? 'add' : 'remove'}EventListener`](
+      'click', this.buttonClickHandler
     );
 
     fireEvent(
@@ -40,15 +48,10 @@ class History {
     addEvent(container, 'click', killEvent);
     addEvent(container, 'contextmenu', killEvent);
 
-    const title = document.createElement('div');
-    title.innerHTML = 'History';
-    title.className = 'phylocanvas-history-title';
-    container.appendChild(title);
-
     const button = document.createElement('button');
     button.className = 'phylocanvas-history-button';
-    button.title = 'History';
-    addEvent(button, 'click', this.toggle.bind(this));
+    button.innerHTML = 'History';
+    addEvent(button, 'click', this.buttonClickHandler);
     container.appendChild(button);
     this.button = button;
 
@@ -109,6 +112,7 @@ class History {
     const id = snapshot.getAttribute('data-tree-root');
     this.tree.setTreeType(snapshot.getAttribute('data-tree-type'), true);
     this.tree.redrawFromBranch(this.tree.originalTree.branches[id]);
+    this.toggle();
   }
 
 }

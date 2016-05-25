@@ -1,5 +1,5 @@
 # Phylocanvas History Plugin
-Visual History for Phylocanvas
+Visual History for Phylocanvas.
 
 ## Usage
 ```
@@ -12,8 +12,10 @@ import historyPlugin from 'phylocanvas-plugin-history';
 Phylocanvas.plugin(historyPlugin);
 
 Phylocanvas.createTree('id', {
+  // config defaults
   history: {
-    parentElement: null, // defaults to tree.containerElement
+    parent: tree.containerElement,
+    zIndex: 1,
   }
 })
 ```

@@ -1,6 +1,6 @@
 {
   "name": "phylocanvas-plugin-history",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Visual history for PhyloCanvas",
   "main": "index.js",
   "scripts": {

@@ -103,7 +103,7 @@ class History {
 
   clear() {
     for (let i = this.snapshots.length; i--;) {
-      this.snapshotList.removeChild(this.snapshots[0]);
+      this.snapshotList.removeChild(this.snapshots[i]);
     }
     this.snapshots.length = 0;
   }

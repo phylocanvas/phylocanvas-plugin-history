@@ -2,7 +2,7 @@
   "name": "phylocanvas-plugin-history",
   "version": "2.0.2",
   "description": "Visual history for PhyloCanvas",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --inline",
     "build": "NODE_ENV=production webpack",
@@ -37,5 +37,10 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.10.1"
-  }
+  },
+  "files": [
+    "dist",
+    "*.md",
+    "unstyled.js"
+  ]
 }

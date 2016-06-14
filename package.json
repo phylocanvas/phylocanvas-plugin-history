@@ -1,7 +1,7 @@
 {
   "name": "phylocanvas-plugin-history",
   "version": "2.0.2",
-  "description": "Visual history for PhyloCanvas",
+  "description": "Visual history for Phylocanvas",
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --inline",
@@ -17,7 +17,7 @@
     "history",
     "biojs"
   ],
-  "author": "",
+  "author": "The Centre for Genomic Pathogen Surveillance",
   "license": "LGPL-3.0",
   "bugs": {
     "url": "https://github.com/PhyloCanvas/phylocanvas-plugin-history/issues"

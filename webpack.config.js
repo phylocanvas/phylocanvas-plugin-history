@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
@@ -46,8 +47,10 @@ const commonProdConfig = Object.assign({}, commonConfig, {
 const styledConfig = Object.assign({}, commonProdConfig, {
   entry: './src/styled.js',
   output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.min.js',
+    library: 'PhylocanvasHistoryPlugin',
     libraryTarget: 'umd',
-    filename: 'index.js',
   },
 });
 
